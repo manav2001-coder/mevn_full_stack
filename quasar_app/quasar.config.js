@@ -13,6 +13,14 @@ const { configure } = require('quasar/wrappers');
 
 module.exports = configure(function (ctx) {
   return {
+    module: {
+      rules: [
+        {
+          test: /\.xml$/,
+          use: 'xml-loader',
+        },
+      ],
+    },
     // https://v2.quasar.dev/quasar-cli-webpack/supporting-ts
     supportTS: false,
 
@@ -25,6 +33,7 @@ module.exports = configure(function (ctx) {
     boot: [
       
       'axios',
+
     ],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
@@ -36,7 +45,7 @@ module.exports = configure(function (ctx) {
     extras: [
       // 'ionicons-v4',
       // 'mdi-v5',
-      // 'fontawesome-v6',
+       'fontawesome-v6',
       // 'eva-icons',
       // 'themify',
       // 'line-awesome',
@@ -48,7 +57,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-build
     build: {
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
 
       // transpile: false,
       // publicPath: '/',
@@ -80,7 +89,9 @@ module.exports = configure(function (ctx) {
         type: 'http'
       },
       port: 8080,
-      open: true // opens browser window automatically
+      open: true, // opens browser window automatically
+      proxy: {
+        '/api': 'http://localhost:3000',    }
     },
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-framework
@@ -98,7 +109,13 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'Notify',
+        'Cookies',
+        'Loading',
+        'Dialog',
+        'LocalStorage'
+      ]
     },
 
     // animations: 'all', // --- includes all animations
@@ -207,7 +224,7 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'quasar-app'
+        appId: 'quasar-app-v2'
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain

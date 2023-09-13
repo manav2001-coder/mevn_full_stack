@@ -1,116 +1,86 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+  <div class="h-screen flex overflow-hidden bg-gray-50">
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+    <Sidebar />
+    <div class="flex flex-col w-full flex-1 h-screen overflow-auto">
+      <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow w-full">
+        <div class="border-r flex items-center justify-center">
+          <q-btn icon="reorder" flat  class="border-r"></q-btn>
+          </div>
+        <div class="flex-1 flex justify-end">
+          <div class=" flex items-center justify-center max-w-7xl py-4 mr-auto px-4 sm:px-6 md:px-8 md:max-w-full">
+            <h1 class="text-2xl font-semibold text-black">{{ $route.name }}</h1>
+          </div>
+          <div class="ml-4 flex items-center md:ml-6  md:flex ">
 
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
+            <div class="ml-3 relative">
+              <div>
+                <!-- TODO: Implement clickaway-->
+                <q-btn color="accent text-grey-7 text-capitalize float-right" flat :label="username">
+              <q-icon name="account_circle" class="q-pr-sm q-ml-sm"></q-icon>
+              <q-menu transition-show="flip-right"
+          transition-hide="flip-left">
+                <q-card>
+                   <q-card-actions vertical class="text-grey-7">
+        <q-btn flat v-bind:to="'/change_password'" >Change Password</q-btn>
+        <q-separator />
+        <q-btn flat @click="logout">Sign Out</q-btn>
+      </q-card-actions>
+                </q-card>
+              </q-menu>
+            </q-btn>
+              </div>
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- hiding breadcrumb for time being -->
+      <!--<BreadCrumb />--> 
+      <!-- This example requires Tailwind CSS v2.0+ -->
+      <main class="flex-1 relative overflow-y-auto focus:outline-none w-full py-2">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 md:max-w-full h-full bg-blue-gray">
+          <!-- Replace with your content -->
+          <router-view />
+          <!-- /End replace -->
+        </div>
+      </main>
 
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-  </q-layout>
+     
+    </div>
+
+  </div>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+import { authStore } from '../stores/auth.js'
+import Sidebar from '../components/Sidebar.vue'
+import { mapState } from 'pinia'
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
+const auth = authStore()
 
 export default defineComponent({
   name: 'MainLayout',
-
-  components: {
-    EssentialLink
-  },
-
-  setup () {
-    const leftDrawerOpen = ref(false)
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+  components:{Sidebar},
+  data(){
+    return{
     }
-  }
+  },
+  methods:{
+    logout(){
+      this.$axios.get("/logout").then((res) => {
+          if(res.data.ok){
+            
+             auth.destroyLoginSession()
+             this.$router.push('/login')
+          }
+      })
+    }
+  },
+  computed:{
+     ...mapState(authStore,['username'])
+  },
 })
 </script>
