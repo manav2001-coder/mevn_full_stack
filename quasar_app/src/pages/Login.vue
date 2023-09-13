@@ -4,7 +4,7 @@
   <q-input label="Password" v-model="password"></q-input>
   <q-btn label="Login" class="q-mt-md" @click="login"></q-btn>
   </div> -->
-  <section class="min-h-screen flex items-center justify-center py-5 px-5 lg:px-1 bg-gray-200">
+  <section class="min-h-screen flex items-center justify-center py-5 px-5 lg:px-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ...">
     <div class="flex flex-wrap lg:flex-nowrap items-start justify-center">
       <div class="w-full sm:w-96 lg:mr-6 ">
         <div class="flex flex-col justify-evenly bg-white shadow-xl rounded-lg py-8 px-5 sm:px-5">
