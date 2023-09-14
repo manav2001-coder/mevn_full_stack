@@ -4,20 +4,19 @@
   <q-input label="Password" v-model="password"></q-input>
   <q-btn label="Login" class="q-mt-md" @click="login"></q-btn>
   </div> -->
-  <section class="min-h-screen flex items-center justify-center py-5 px-5 lg:px-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 ...">
-    <div class="flex flex-wrap lg:flex-nowrap items-start justify-center">
-      <div class="w-full sm:w-96 lg:mr-6 ">
-        <div class="flex flex-col justify-evenly bg-white shadow-xl rounded-lg py-8 px-5 sm:px-5">
-          <div class="mb-5">
-            <img class="mx-auto h-16" src="../assets/node_js.png" alt="aurochs"/>
-            <h1 class="  mb-4 mt-5 text-center text-xl font-bold text-green-600 ">
-            Sign in to your account
-             
-            </h1>
-          </div>
-          <div class="">
-            <label for="loginEmail" class="font-bold opacity-70 text-sm">Email/Username</label>
-            <q-input filled type="email" v-model="username" class="mb-5 mt-1" dense >
+  <section class="min-h-screen flex items-center justify-around py-5 px-20 lg:px-20 bg-gradient-to-r from-white  to-gray-300 ...">
+  <div class="flex items-center justify-between">
+<img class="mx-auto h-60" src="../assets/twitter.png" alt="aurochs"/>
+  </div>
+<div class="flex  flex-col justify-center py-16 sm:px-6 lg:px-8">
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+    <div class="bg-white px-6 py-5 shadow sm:rounded-lg border sm:px-12">
+    <img class="mx-auto h-8" src="../assets/twitter.png" alt="aurochs"/>
+      <div class="space-y-6 mt-6">
+        <div>
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email/Username</label>
+          <div class="mt-2">
+            <q-input outlined type="email" v-model="username" class="mb-5 mt-1" dense >
               <template v-slot:append>
                 <q-icon name="account_circle" color="grey-6"/>
               </template>
@@ -26,9 +25,12 @@
               </q-tooltip>
             </q-input>
           </div>
-          <div class="">
-            <label for="loginPassword" class="font-bold opacity-70 text-sm ">Password</label>
-            <q-input filled :type="password_visibility ? 'text' : 'password'" no-pass-toggle v-model="password" class="mb-5 mt-1" dense @keyup.enter="login"><!-- minor func enter button for login -->
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+          <div class="mt-2">
+          <q-input outlined :type="password_visibility ? 'text' : 'password'" no-pass-toggle v-model="password" class="mb-5 mt-1" dense @keyup.enter="login"><!-- minor func enter button for login -->
               <template v-slot:append>
                <q-icon  @click="password_visibility = !password_visibility" color="grey-6" :name="password_visibility ? 'visibility_off' : 'visibility'"/>
               </template>
@@ -37,15 +39,17 @@
               </q-tooltip>
             </q-input>
           </div>
-          <div class="mt-3">
-            <q-btn class="bg-green-600 text-white" @click="login" label="Sign In" style="width: 100%"/>
-          </div>
-          <div class="flex justify-end">
-          <a target="_blank" href="/privacy-policy" class="mt-2 text-green-600 text-xs flex justify-end underline">Privacy Policy</a>
         </div>
+
+        <div>
+          <button  @click="login" class="flex w-full justify-center rounded-full bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+          <button  @click="login" class="flex w-full mt-3 justify-center rounded-full border-black border-2 bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Forgot password?</button>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
   </section>
 </template>
 <script>

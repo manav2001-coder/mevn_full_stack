@@ -28,6 +28,7 @@ app.listen(3000,()=>{
 app.post("/api/login",(req,res) => {
     let User = getUser(req.body.username)
     User.then((user) => {
+        console.log(user)
         if(user.password === req.body.password){
          session.username=user.username
          res.send({ok:true,session:session})
