@@ -10,7 +10,9 @@ mongoose.connect("mongodb://localhost:27017/demo")
 const userSchema = new mongoose.Schema({
     username:String,
     password:String,
-    roll_no:Number
+    name:String,
+    email:String,
+    phone:Number,
 })
 
 userSchema.plugin(mongooseEncryption,{secret:process.env.SECRET,encryptedFields:["password"]})

@@ -10,7 +10,7 @@
   </div>
 <div class="flex  flex-col justify-center py-16 sm:px-6 lg:px-8">
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-    <div class="bg-white px-6 py-5 shadow sm:rounded-lg border sm:px-12">
+    <div class="bg-white px-4 py-10 shadow sm:rounded-lg border sm:px-12">
     <img class="mx-auto h-8" src="../assets/twitter.png" alt="aurochs"/>
       <div class="space-y-6 mt-6">
         <div>

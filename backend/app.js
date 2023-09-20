@@ -39,7 +39,7 @@ app.post("/api/login",(req,res) => {
 
 //Add User API
 app.post("/api/addUser",(req,res) => {
-    let user = new userModel({username:req.body.username,password:req.body.password,roll_no:1})
+    let user = new userModel({username:req.body.username,password:req.body.password,email:req.body.email,name:req.body.name,phone:req.body.phone})
     user.save()
     res.send({ok:true})
 })

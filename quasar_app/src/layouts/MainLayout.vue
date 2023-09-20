@@ -4,19 +4,18 @@
     <Sidebar />
     <div class="flex flex-col w-full flex-1 h-screen overflow-auto">
       <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow w-full">
-        <div class="border-r flex items-center justify-center">
+        <!-- <div class="border-r flex items-center justify-center">
           <q-btn icon="reorder" flat  class="border-r"></q-btn>
-          </div>
+          </div> -->
         <div class="flex-1 flex justify-end">
-          <div class=" flex items-center justify-center max-w-7xl py-4 mr-auto px-4 sm:px-6 md:px-8 md:max-w-full">
-            <h1 class="text-2xl font-semibold text-black">{{ $route.name }}</h1>
+          <div class=" flex items-center justify-center max-w-7xl py-4 mr-auto px-5 sm:px-6 md:px-5 md:max-w-full">
+            <h1 class="text-xl font-semibold text-black">{{ $route.name }}</h1>
           </div>
           <div class="ml-4 flex items-center md:ml-6  md:flex ">
 
 
-            <div class="ml-3 relative">
+            <!-- <div class="ml-3 relative">
               <div>
-                <!-- TODO: Implement clickaway-->
                 <q-btn color="accent text-grey-7 text-capitalize float-right" flat :label="username">
               <q-icon name="account_circle" class="q-pr-sm q-ml-sm"></q-icon>
               <q-menu transition-show="flip-right"
@@ -32,7 +31,7 @@
             </q-btn>
               </div>
 
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
